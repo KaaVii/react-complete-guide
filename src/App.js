@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.module.css';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -73,30 +73,31 @@ class App extends Component {
           })}
         </div>
       );
-     }
+      style.backgroundColor = 'red';
+    }
 
-    const classes = [];
+    const assignClasses = [];
 
     if (this.state.persons.length <= 2) {
-      classes.push('red'); //classes will be ['red']
+      assignClasses.push(classes.red); //classes will be ['red']
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push('bold'); //classes will be ['red', 'bold']
+      assignClasses.push(classes.bold); //classes will be ['red', 'bold']
     }
 
-    console.log("Application starts");
-    console.log(classes);
+    console.log('Application starts');
+    console.log(String(classes));
 
     return (
-      
-      <div className="App">
+
+      <div className={classes.App}>
         <h1>First React App</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
+        <p className={assignClasses.join( ' ' )}>This is really working!</p>
         <button style={style} onClick={this.togglePersonsHandler}>Toggle Peresons</button>
         {persons}
       </div>
-      
+
     );
 
     //Another way to create a React Element to be Render
