@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import classes from './App.module.css';
-import Person from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
+//import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 class App extends Component {
 
   state = {
@@ -49,43 +50,29 @@ class App extends Component {
   render() {
 
     let persons = null;
-    let btnClass = null;
 
     if (this.state.showPersons) {
       persons = (
-        <div >
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}><Person
-              //click={() => this.deletePersonHandler(index)}
-              click={this.deletePersonHandler.bind(this, index)}
-              name={person.name}
-              age={person.age}
-              changed={(event) => this.nameChangedHandler(event, person.id)} /></ErrorBoundary>
-          })}
-        </div>
+            <Persons 
+         clicked={this.deletePersonHandler}
+         changed={this.nameChangedHandler}
+         persons={this.state.persons}
+         />
+        
+        
       );
-      btnClass = classes.Red;
     }
-
-    const assignClasses = [];
-
-    if (this.state.persons.length <= 2) {
-      assignClasses.push(classes.red); //classes will be ['red']
-    }
-
-    if (this.state.persons.length <= 1) {
-      assignClasses.push(classes.bold); //classes will be ['red', 'bold']
-    }
-
     console.log('Application starts');
     console.log(String(classes));
 
     return (
 
       <div className={classes.App}>
-        <h1>First React App</h1>
-        <p className={assignClasses.join( ' ' )}>This is really working!</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>Toggle Peresons</button>
+       <Cockpit 
+        appTitle={this.props.title}
+        persons={this.state.persons}
+        showPersons={this.state.showPersons}
+        clicked={this.togglePersonsHandler}       />
         {persons}
       </div>
 
