@@ -4,8 +4,31 @@ import classes from './Person.module.css';
 
 class Person extends Component {
 
-    render() {
+
+   
+    constructor(props){ 
+        super(props);
+        console.log('[Person.js] Inside Constructor', props)
         
+        
+        
+      
+      }
+    
+      
+
+      componentWillMount() { 
+        var teste = "Teste";
+        console.log(teste);
+        console.log('[Person.js] Inside Component Will Mount');
+      }
+      componentDidMount() { 
+        console.log('[Person.js] Inside Component Did Mount');
+      }
+
+    render() {
+        console.log('[Person.js] Inside Component Render');
+
  /*    const rnd = Math.random();
     if (rnd > 0.7){
         throw new Error('Something went wrong');
